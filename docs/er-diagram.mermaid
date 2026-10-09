@@ -1,0 +1,72 @@
+erDiagram
+    USERS ||--o| TENANTS : "has tenancy profile"
+    DORM_ROOMS ||--o{ TENANTS : houses
+    TENANTS ||--o{ CONTRACTS : signs
+    DORM_ROOMS ||--o{ CONTRACTS : covers
+    CONTRACTS ||--o{ PAYMENTS : "billed as"
+    TENANTS ||--o{ PAYMENTS : makes
+    TENANTS ||--o{ MAINTENANCE_REQUESTS : submits
+    DORM_ROOMS ||--o{ MAINTENANCE_REQUESTS : needs
+    USERS ||--o{ NOTIFICATIONS : sends
+    USERS ||--o{ REPORTS : generates
+
+    USERS {
+        int user_id PK
+        varchar first_name
+        varchar last_name
+        varchar email UK
+        varchar password_hash
+        enum role "admin | tenant"
+        boolean is_active
+    }
+    DORM_ROOMS {
+        int room_id PK
+        varchar room_number UK
+        varchar room_type
+        int capacity
+        decimal monthly_rate
+        enum status
+    }
+    TENANTS {
+        int tenant_id PK
+        int user_id FK
+        int room_id FK
+        date checkin_date
+        enum status
+        boolean key_returned
+        enum approval_status
+    }
+    CONTRACTS {
+        int contract_id PK
+        int tenant_id FK
+        int room_id FK
+        decimal monthly_rent
+        date contract_start
+        date contract_end
+        enum contract_status
+    }
+    PAYMENTS {
+        int payment_id PK
+        int contract_id FK
+        int tenant_id FK
+        decimal payment_amount
+        enum payment_status
+    }
+    MAINTENANCE_REQUESTS {
+        int maintenance_id PK
+        int tenant_id FK
+        int room_id FK
+        enum priority_level
+        enum status
+    }
+    NOTIFICATIONS {
+        int notification_id PK
+        int sender_id FK
+        enum type
+        enum target_type
+    }
+    REPORTS {
+        int report_id PK
+        int generated_by FK
+        enum report_type
+    }

@@ -1,0 +1,410 @@
+/* Universal control geometry. Component-specific rules below may refine color. */
+.form-control,
+.form-select,
+.custom-select-trigger,
+.btn,
+.btn-top-action,
+.btn-action-primary,
+.btn-action-outline,
+.btn-action-light,
+.btn-action-approve,
+.btn-action-reject {
+  min-height: 36px !important;
+  border-radius: var(--border-radius) !important;
+  font-size: .8125rem !important;
+  box-sizing: border-box !important;
+  transition: all 0.15s ease-in-out !important;
+}
+
+/* ============================================================================
+   UNIFIED NOTIFICATION-STYLE CARD HIGHLIGHTS (REPORTS & ANALYTICS)
+   ============================================================================ */
+
+/* 1. Global Outline & Box Shadow Reset for Report Containers */
+#reportSectionsContainer,
+#reportSectionsContainer *,
+.report-section,
+.report-category-group,
+.report-card-container,
+div[id*="report"] {
+  outline: none !important;
+}
+
+/* 2. Base State for All Cards & Containers (Inactive) */
+.report-section,
+.report-category-group,
+.report-card-container,
+.report-card,
+.notification-card,
+.card-highlight-target {
+  background-color: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 12px !important;
+  padding: 1.25rem !important;
+  transition: all 0.2s ease-in-out !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+}
+
+/* 3. Active / Selected Highlight State (Matches Notification Card Style Exactly) */
+.report-section.selected,
+.report-section.active,
+.report-category-group.active,
+.report-card-container.selected,
+.report-card.selected,
+.notification-card.active,
+.card-highlight-target.active,
+#reportSectionsContainer .border-danger,
+.border-danger[class*="report"],
+[data-selected="true"] {
+  background-color: #fdf2f2 !important;
+  border: 1px solid #7f1d1d !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 12px rgba(127, 29, 29, 0.08) !important;
+}
+
+/* 4. Top Filter Pills (Clean 50px Smooth Pills) */
+.tab-filter,
+.filter-btn,
+.reports-tab-btn,
+.nav-pills .nav-link {
+  border-radius: 50px !important;
+  padding: 0.45rem 1.25rem !important;
+  font-size: 0.8125rem !important;
+  font-weight: 500 !important;
+  color: #475569 !important;
+  background-color: #f1f5f9 !important;
+  border: none !important;
+  outline: none !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.tab-filter.active,
+.filter-btn.active,
+.reports-tab-btn.active,
+.nav-pills .nav-link.active,
+.tab-filter[data-active="true"] {
+  background-color: #7f1d1d !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 6px rgba(127, 29, 29, 0.25) !important;
+  border: none !important;
+}
+
+/* 5. "Selected" Badge Tag Styling */
+.badge-selected,
+.tag-selected,
+.selected-indicator {
+  background-color: #7f1d1d !important;
+  color: #ffffff !important;
+  font-size: 0.7rem !important;
+  font-weight: 600 !important;
+  padding: 0.2rem 0.55rem !important;
+  border-radius: 6px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.03em !important;
+}
+
+/* 6. Bootstrap Nav Link Highlights; DTMS sidebar styling lives in style.css. */
+.nav-link.active:not(.nav-pills .nav-link) {
+  background-color: var(--primary-color) !important;
+  color: #ffffff !important;
+  border-radius: var(--border-radius) !important;
+  font-weight: 600 !important;
+}
+
+
+@media print {
+  .no-print, button, .sidebar, .mobile-topbar, .page-header-action, .filter-toolbar, .module-tabs { display: none !important; }
+  body, main, .app-content { background: #fff !important; color: #000 !important; margin: 0 !important; padding: 0 !important; }
+  .panel, .card, .table-responsive { border: 0 !important; box-shadow: none !important; }
+  .table { width: 100% !important; }
+}/* Update .report-category to add internal spacing and separation */
+.report-category {
+  min-width: 0;
+  padding: 1.25rem !important;        /* Adds breathing room inside the highlighted container */
+  margin-bottom: 1.5rem !important;    /* Adds space between category blocks */
+  border-radius: 16px !important;      /* Smooth, proportioned corners */
+  transition: all 0.2s ease-in-out !important;
+}
+
+/* Ensure header text doesn't stick to the top edges inside the section */
+.report-category > .panel-header {
+  margin-bottom: 1rem !important;
+  padding: 0 0.25rem !important;
+}
+
+/* Ensure inner cards maintain clear spacing inside the highlighted parent */
+.report-category .report-card {
+  margin-top: 0.5rem;
+}
+/* Dynamic Reports and Notifications selection hooks share the same card highlight. */
+.report-category.anchor-highlight,
+.type-option.selected {
+  background-color: #fdf2f2 !important;
+  border: 1px solid #7f1d1d !important;
+  border-radius: 12px !important;
+  outline: none !important;
+  box-shadow: 0 4px 12px rgba(127, 29, 29, 0.08) !important;
+}
+.badge-success,
+.badge-approved,
+.status-approved,
+[data-status="approved" i] {
+  background: #ecfdf5 !important;
+  color: #047857 !important;
+  border: 1px solid #a7f3d0 !important;
+}
+.badge-danger,
+.badge-declined,
+.badge-rejected,
+.status-declined,
+[data-status="declined" i],
+[data-status="rejected" i] {
+  background: #fef2f2 !important;
+  color: #b91c1c !important;
+  border: 1px solid #fecdd3 !important;
+}
+
+.badge-warning,
+.badge-pending,
+[data-status="pending" i] {
+  background: #fffbeb !important;
+  color: #b45309 !important;
+  border: 1px solid #fde68a !important;
+}
+
+/* ============================================================================
+   PRIMARY MAROON BRAND OVERRIDES FOR BOOTSTRAP BUTTONS
+   ============================================================================ */
+
+/* Solid Primary / Action Buttons (Review, Assign, Log Request) */
+.btn-danger,
+.btn-primary {
+  background-color: #7f1d1d !important;
+  border-color: #7f1d1d !important;
+  color: #ffffff !important;
+}
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #5c1115 !important;
+  border-color: #5c1115 !important;
+  color: #ffffff !important;
+}
+
+/* Outline Primary / Action Buttons (Print, Export PDF, Edit, Assign Room) */
+.btn-outline-danger,
+.btn-outline-primary {
+  color: #7f1d1d !important;
+  border-color: #7f1d1d !important;
+  background-color: transparent !important;
+}
+.btn-outline-danger:hover,
+.btn-outline-danger:focus,
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+  background-color: #7f1d1d !important;
+  border-color: #7f1d1d !important;
+  color: #ffffff !important;
+}
+
+/* Success / Approval Buttons (Approve) */
+.btn-outline-success {
+  color: #15803d !important;
+  border-color: #bbf7d0 !important;
+  background-color: #f0fdf4 !important;
+}
+.btn-outline-success:hover,
+.btn-outline-success:focus {
+  background-color: #15803d !important;
+  border-color: #15803d !important;
+  color: #ffffff !important;
+}
+
+/* ============================================================================
+  UNIFIED BUTTON DESIGN SYSTEM (ADMIN & TENANT)
+  ============================================================================ */
+
+/* Base Alignment & Sizing Standardization */
+.btn-top-action,
+.btn-action-primary,
+.btn-action-outline,
+.btn-action-light,
+.btn-action-approve,
+.btn-action-reject,
+.btn-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.4rem !important;
+  height: 34px !important;
+  padding: 0 0.85rem !important;
+  font-size: 0.8125rem !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  border-radius: 6px !important;
+  transition: all 0.15s ease-in-out !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+}
+
+/* 1. PRIMARY MAROON BUTTONS (Header CTAs & Highlight Actions) */
+.btn-top-action,
+.btn-action-primary {
+  background-color: #7f1d1d !important;
+  border: 1px solid #7f1d1d !important;
+  color: #ffffff !important;
+}
+.btn-top-action:hover,
+.btn-action-primary:hover {
+  background-color: #5c1115 !important;
+  border-color: #5c1115 !important;
+  color: #ffffff !important;
+}
+
+/* 2. LIGHT MAROON OUTLINE BUTTONS (Assign, Go, Table Options) */
+.btn-action-outline,
+.btn-action-light {
+  background-color: #ffffff !important;
+  border: 1px solid #7f1d1d !important;
+  color: #7f1d1d !important;
+  font-weight: 500 !important;
+}
+.btn-action-outline:hover,
+.btn-action-light:hover {
+  background-color: #7f1d1d !important;
+  border-color: #7f1d1d !important;
+  color: #ffffff !important;
+}
+
+/* 3. MAROON-COMPLIMENTARY STATUS ACTIONS (Approve / Reject) */
+.btn-action-approve {
+  height: 34px !important;
+  padding: 0 0.75rem !important;
+  background-color: #f2f7f4 !important;
+  border: 1px solid #7db893 !important;
+  color: #1e5e3a !important;
+  font-weight: 600 !important;
+  font-size: 0.8125rem !important;
+}
+.btn-action-approve:hover {
+  background-color: #1e5e3a !important;
+  border-color: #1e5e3a !important;
+  color: #ffffff !important;
+}
+
+.btn-action-reject {
+  height: 34px !important;
+  padding: 0 0.75rem !important;
+  background-color: #faf0f0 !important;
+  border: 1px solid #e2a8a8 !important;
+  color: #8c1d1d !important;
+  font-weight: 600 !important;
+  font-size: 0.8125rem !important;
+}
+.btn-action-reject:hover {
+  background-color: #8c1d1d !important;
+  border-color: #8c1d1d !important;
+  color: #ffffff !important;
+}
+
+/* Square Table Icon Action Button */
+.btn-icon {
+  width: 36px !important;
+  height: 36px !important;
+  padding: 0 !important;
+  border-radius: 6px !important;
+}
+
+/* ============================================================================
+   MAINTENANCE ASSIGNMENT GROUP - FIXED SPACING & INDEPENDENT BUTTONS
+   ============================================================================ */
+
+/* 1. Container - Adds physical space between Select and Go Button */
+.input-group.maintenance-assign-group,
+.input-group:has(.btn-action-outline) {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  width: auto !important;
+}
+
+/* 2. Select Box - Widened with Left Text Alignment & Clear Chevron Padding */
+.input-group.maintenance-assign-group .form-select,
+.input-group .form-select {
+  width: 145px !important;
+  height: 34px !important;
+  font-size: 0.8125rem !important;
+  text-align: left !important;
+  padding-left: 0.75rem !important;
+  padding-right: 2rem !important;
+  border: 1px solid #7f1d1d !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+  background-position: right 0.6rem center !important;
+}
+
+/* 3. Go Button - Separate Standalone Button */
+.input-group.maintenance-assign-group .btn,
+.input-group .btn-action-outline {
+  height: 34px !important;
+  line-height: 1 !important;
+  margin-left: 0 !important;
+  border: 1px solid #7f1d1d !important;
+  border-radius: 6px !important;
+  padding: 0 0.85rem !important;
+  background-color: #ffffff !important;
+  color: #7f1d1d !important;
+  font-size: 0.8125rem !important;
+  font-weight: 500 !important;
+  flex-shrink: 0 !important;
+  transition: all 0.15s ease-in-out !important;
+}
+
+.input-group.maintenance-assign-group .btn:hover,
+.input-group .btn-action-outline:hover {
+  background-color: #7f1d1d !important;
+  color: #ffffff !important;
+}
+
+/* 5. REPORTS EQUAL-SIZE & CENTERED BUTTON GROUP */
+.report-card-actions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  width: 100% !important;
+  margin-top: 0.75rem !important;
+}
+
+.report-card-actions .btn {
+  flex: 1 1 0 !important;
+  height: 34px !important;
+  text-align: center !important;
+  justify-content: center !important;
+}
+
+/* Unified compact button geometry. */
+button,
+.btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.35rem !important;
+}
+
+/* Isolated sidebar notification hooks; these do not participate in card or form states. */
+.sidebar [data-badge-type="badge-tenants"],
+.sidebar [data-badge-type="badge-payments"],
+.sidebar [data-badge-type="badge-maintenance"],
+.sidebar [data-badge-type="badge-notifications"] {
+  flex: 0 0 auto !important;
+}
+
+.sidebar [data-badge-type="dot-notifications"] {
+  flex: 0 0 8px !important;
+}
+

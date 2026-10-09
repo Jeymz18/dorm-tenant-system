@@ -1,0 +1,6 @@
+# Uploaded files should never be executable, even if a bad file
+# slips past the extension whitelist in handle_upload().
+<FilesMatch "\.(php|phtml|php3|php4|php5|php7|pl|py|cgi|asp|aspx|sh|exe)$">
+  Require all denied
+</FilesMatch>
+Options -ExecCGI -Indexes

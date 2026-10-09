@@ -1,0 +1,17 @@
+/vendor/
+/uploads/receipts/*
+/uploads/contracts/*
+/uploads/maintenance/*
+!/uploads/receipts/.gitkeep
+!/uploads/contracts/.gitkeep
+!/uploads/maintenance/.gitkeep
+.DS_Store
+/config/mail.local.php
+/uploads/issues/*
+!/uploads/issues/.gitkeep
+
+/config/paymongo.php
+
+/.env
+/.env.*
+!/config/mail.local.example.php

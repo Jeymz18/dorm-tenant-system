@@ -1,0 +1,11 @@
+# Files in here are only meant to be require()'d by a bootstrapped
+# page (one that already loaded config/app.php) — several of them
+# execute real logic immediately using functions/constants that only
+# exist after that bootstrap has run. Hitting one directly does no
+# harm to data, but it does throw an uncaught PHP error that can leak
+# the server's file path. Simplest fix: never let a browser request
+# reach these files at all.
+<FilesMatch "\.php$">
+  Require all denied
+</FilesMatch>
+Options -Indexes
